@@ -99,6 +99,15 @@ const InteractionsShowcase = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div className="space-y-4">
+        <h3 className="text-xl font-semibold mb-4">Loading States</h3>
+        <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md flex flex-col items-center space-y-4">
+          <LoadingDots />
+          <p className="text-sm text-gray-600 dark:text-gray-300 mt-4">
+            Staggered animation loading indicator
+          </p>
+        </div>
+      </div>
+      <div className="space-y-4">
         <h3 className="text-xl font-semibold mb-4">Ripple Buttons</h3>
         <div className="space-y-4">
           <RippleButton className="bg-primary text-white w-full">
@@ -129,6 +138,33 @@ const InteractionsShowcase = () => {
           <FloatingButton />
         </div>
       </div>
+    </div>
+  );
+};
+
+const LoadingDots = () => {
+  const dotVariants = {
+    initial: { y: 0 },
+    animate: { y: -8 },
+  };
+
+  return (
+    <div className="flex items-center space-x-2">
+      {[0, 1, 2].map((index) => (
+        <motion.div
+          key={index}
+          variants={dotVariants}
+          initial="initial"
+          animate="animate"
+          transition={{
+            duration: 0.5,
+            repeat: Infinity,
+            repeatType: "reverse",
+            delay: index * 0.2,
+          }}
+          className="w-2 h-2 bg-gray-800 dark:bg-gray-200 rounded-full"
+        />
+      ))}
     </div>
   );
 };
