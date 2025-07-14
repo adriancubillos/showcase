@@ -96,14 +96,14 @@ const InteractionsShowcase = () => {
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 lg:col-span-2">
           <h3 className="text-xl font-semibold mb-4">Floating Elements <span className="text-sm text-gray-600 dark:text-gray-300">(Hover me)</span></h3>
           <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <FloatingButton />
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 row-start-2 lg:row-start-1 lg:col-start-3">
           <h3 className="text-xl font-semibold mb-4">Hover Cards</h3>
           <HoverCard>
             <h4 className="text-lg font-medium mb-2">Interactive Card</h4>
