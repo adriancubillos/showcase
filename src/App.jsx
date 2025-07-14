@@ -107,15 +107,21 @@ function App() {
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
             Crafting beautiful and functional web experiences
           </p>
-          <button 
+          <button
             className="btn btn-primary"
+            onClick={() => scrollTo('interactions')}
+          >
+            Interactive Elements
+          </button>
+          <button
+            className="btn btn-secondary"
             onClick={() => scrollTo('projects')}
           >
             View My Work
           </button>
         </motion.div>
-        <ChevronDownIcon 
-          className="w-8 h-8 text-gray-400 animate-bounce mt-16 cursor-pointer" 
+        <ChevronDownIcon
+          className="w-8 h-8 text-gray-400 animate-bounce mt-16 cursor-pointer"
           onClick={() => scrollTo('skills')}
         />
       </section>
