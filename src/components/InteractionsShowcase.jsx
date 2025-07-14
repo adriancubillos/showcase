@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CubeIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { CubeIcon, ArrowPathIcon, HeartIcon, BellIcon, StarIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as HeartIconSolid, BellIcon as BellIconSolid, StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 
 const RippleButton = ({ children, className = '', variant = 'primary' }) => {
   const [ripples, setRipples] = useState([]);
@@ -106,7 +107,7 @@ const FloatingButton = () => {
       className="relative px-6 py-3 rounded-lg bg-primary text-white"
       animate={{
         y: isHovered ? -8 : 0,
-        boxShadow: isHovered 
+        boxShadow: isHovered
           ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
           : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)'
       }}
@@ -130,6 +131,28 @@ const FloatingButton = () => {
 const InteractionsShowcase = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="space-y-4">
+        <h3 className="text-xl font-semibold mb-4">Micro-interactions</h3>
+        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 space-y-4">
+          <MicroInteraction
+            icon={HeartIcon}
+            iconSolid={HeartIconSolid}
+            label="Like"
+            variant="like"
+          />
+          <MicroInteraction
+            icon={BellIcon}
+            iconSolid={BellIconSolid}
+            label="Notifications"
+          />
+          <MicroInteraction
+            icon={StarIcon}
+            iconSolid={StarIconSolid}
+            label="Favorite"
+            variant="favorite"
+          />
+        </div>
+      </div>
       <div className="space-y-4">
         <h3 className="text-xl font-semibold mb-4">3D Card Flip</h3>
         <div className="perspective-1000">
@@ -220,6 +243,56 @@ const FlipCard = () => {
         </div>
       </motion.div>
     </div>
+  );
+};
+
+const MicroInteraction = ({ icon: Icon, iconSolid: IconSolid, label, variant }) => {
+  const [isActive, setIsActive] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.button
+      className={`relative flex items-center space-x-2 px-4 py-2 rounded-lg ${isActive ? (variant === 'like' ? 'bg-red-50 dark:bg-red-900/10' : variant === 'favorite' ? 'bg-yellow-50 dark:bg-yellow-900/10' : 'bg-primary/10') : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={() => setIsActive(!isActive)}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <motion.div
+        initial={false}
+        animate={{
+          scale: isActive ? 1.1 : 1,
+          rotate: isActive ? [0, -10, 10, -10, 0] : 0,
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 500,
+          damping: 30,
+          rotate: {
+            duration: 0.5,
+            ease: 'easeInOut',
+          },
+        }}
+      >
+        {isActive ? (
+          <IconSolid className={`w-6 h-6 ${variant === 'like' ? 'text-red-500' : variant === 'favorite' ? 'text-yellow-500' : 'text-primary'}`} />
+        ) : (
+          <Icon className={`w-6 h-6 ${isHovered ? (variant === 'like' ? 'text-red-500' : variant === 'favorite' ? 'text-yellow-500' : 'text-primary') : 'text-gray-600 dark:text-gray-400'}`} />
+        )}
+      </motion.div>
+      <span className={`text-sm font-medium ${isActive ? (variant === 'like' ? 'text-red-500' : variant === 'favorite' ? 'text-yellow-500' : 'text-primary') : 'text-gray-600 dark:text-gray-400'}`}>
+        {label}
+      </span>
+      {isActive && (
+        <motion.div
+          className={`absolute inset-0 rounded-lg border-2 ${variant === 'like' ? 'border-red-500' : variant === 'favorite' ? 'border-yellow-500' : 'border-primary'}`}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 1.2, opacity: 0 }}
+        />
+      )}
+    </motion.button>
   );
 };
 
