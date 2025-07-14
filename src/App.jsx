@@ -2,16 +2,22 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { CodeBracketIcon, PaintBrushIcon, DevicePhoneMobileIcon } from '@heroicons/react/24/outline'
+import { CodeBracketIcon, PaintBrushIcon, DevicePhoneMobileIcon, SparklesIcon } from '@heroicons/react/24/outline'
 import SkillCard from './components/SkillCard'
 import ProjectCard from './components/ProjectCard'
 import ContactForm from './components/ContactForm'
 import DarkModeToggle from './components/DarkModeToggle'
 import Navigation from './components/Navigation'
+import InteractionsShowcase from './components/InteractionsShowcase'
 import scrollTo from './components/ScrollTo'
 import './App.css'
 
 const skills = [
+  {
+    icon: SparklesIcon,
+    title: 'Interactive UI',
+    description: 'Creating engaging user interfaces with smooth animations and interactions.'
+  },
   {
     icon: CodeBracketIcon,
     title: 'Frontend Development',
@@ -122,6 +128,16 @@ function App() {
             <SkillCard key={index} {...skill} />
           ))}
         </div>
+      </section>
+
+      {/* Interactions Section */}
+      <section id="interactions" className="section-container bg-white dark:bg-gray-800">
+        <h2 className="text-4xl font-bold text-center mb-12">Interactive Elements</h2>
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+          Explore various interactive elements and animations that enhance the user experience.
+          Each component is designed to provide meaningful feedback and engagement.
+        </p>
+        <InteractionsShowcase />
       </section>
 
       {/* Projects Section */}
