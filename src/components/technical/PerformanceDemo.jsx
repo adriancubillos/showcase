@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PerformanceDemo = () => {
-    const [items, setItems] = useState(Array.from({ length: 50 }, (_, i) => i));
+    const [items, setItems] = useState(Array.from({ length: 30 }, (_, i) => i));
     const [animating, setAnimating] = useState(false);
 
     const shuffleArray = () => {
@@ -32,16 +32,16 @@ const PerformanceDemo = () => {
                 </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
                 {/* Transform-based Animation */}
                 <div className="space-y-4">
                     <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Using Transform (GPU Accelerated)
                     </h5>
-                    <div className="h-[300px] overflow-hidden bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                        <div className="grid grid-cols-5 gap-2">
+                    <div className="h-[280px] sm:h-[400px] overflow-y-auto bg-gray-50 dark:bg-gray-800 rounded-lg p-2 sm:p-4">
+                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 sm:gap-2">
                             <AnimatePresence>
-                                {items.slice(0, 25).map((item) => (
+                                {items.slice(0, 15).map((item) => (
                                     <motion.div
                                         key={item}
                                         layout
@@ -54,8 +54,8 @@ const PerformanceDemo = () => {
                                             damping: 25
                                         }}
                                         className="aspect-square bg-primary/80 rounded-lg
-                                            flex items-center justify-center text-white text-sm
-                                            transform-gpu" // Use GPU acceleration
+                                            flex items-center justify-center text-white text-[10px] sm:text-sm
+                                            transform-gpu select-none" // Use GPU acceleration
                                     >
                                         {item + 1}
                                     </motion.div>
@@ -77,10 +77,10 @@ const PerformanceDemo = () => {
                     <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300">
                         Using Position (CPU Based)
                     </h5>
-                    <div className="h-[300px] overflow-hidden bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-                        <div className="grid grid-cols-5 gap-2">
+                    <div className="h-[280px] sm:h-[400px] overflow-y-auto bg-gray-50 dark:bg-gray-800 rounded-lg p-2 sm:p-4">
+                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 sm:gap-2">
                             <AnimatePresence>
-                                {items.slice(25).map((item) => (
+                                {items.slice(15).map((item) => (
                                     <motion.div
                                         key={item}
                                         layout
@@ -93,8 +93,8 @@ const PerformanceDemo = () => {
                                             damping: 25
                                         }}
                                         className="aspect-square bg-secondary/80 rounded-lg
-                                            flex items-center justify-center text-white text-sm
-                                            relative" // Use position-based animation
+                                            flex items-center justify-center text-white text-[10px] sm:text-sm
+                                            relative select-none" // Use position-based animation
                                     >
                                         {item + 1}
                                     </motion.div>
