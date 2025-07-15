@@ -99,19 +99,29 @@ const FormValidation = () => {
             console.log('Form submitted:', formData);
             // Show success message
             setShowSuccess(true);
-            // Reset form
-            setFormData({
-                username: '',
-                email: '',
-                password: '',
-                confirmPassword: ''
-            });
-            setTouched({});
+
+            resetForm();
             // Hide success message after 3 seconds
             setTimeout(() => {
                 setShowSuccess(false);
             }, 3000);
         }
+    };
+
+    // Check if any field has been touched or modified
+    const isFormDirty = () => {
+        return Object.keys(touched).length > 0 ||
+            Object.values(formData).some(value => value !== '');
+    };
+
+    const resetForm = () => {
+        setFormData({
+            username: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        });
+        setTouched({});
     };
 
     const inputClasses = (fieldName) => {
@@ -120,7 +130,7 @@ const FormValidation = () => {
 
     const renderFieldIcon = (fieldName) => {
         if (!touched[fieldName]) return null;
-        
+
         return errors[fieldName] ? (
             <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
         ) : (
@@ -276,13 +286,24 @@ const FormValidation = () => {
 
             <button
                 type="submit"
-                className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg
-                    hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                className="w-full px-4 py-2 text-white bg-primary rounded-lg
+                    hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
                     transition-colors duration-200
                     disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={Object.keys(errors).length > 0}
+                disabled={Object.keys(errors).length > 0 || !isFormDirty()}
             >
                 Submit
+            </button>
+            <button
+                type="reset"
+                className="w-full px-4 py-2 text-white bg-secondary rounded-lg
+                    hover:bg-secondary-600 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2
+                    transition-colors duration-200
+                    disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={resetForm}
+                disabled={!isFormDirty()}
+            >
+                Reset
             </button>
         </form>
     );
