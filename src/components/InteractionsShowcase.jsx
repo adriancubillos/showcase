@@ -9,11 +9,19 @@ import LoadingDots from './interactions/LoadingDots';
 import FloatingButton from './interactions/FloatingButton';
 import HoverCard from './interactions/HoverCard';
 import ParticleSystem from './interactions/ParticleSystem';
+import NotificationStack from './interactions/NotificationStack';
 
 const InteractionsShowcase = () => {
   return (
     <div className="max-w-6xl mx-auto py-12 px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* iOS-style Notifications */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold mb-4">iOS Notifications</h3>
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <NotificationStack />
+          </div>
+        </div>
         <div className="space-y-4">
           <h3 className="text-xl font-semibold mb-4">Micro-interactions</h3>
           <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md space-y-4">
