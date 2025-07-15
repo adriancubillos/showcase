@@ -1,4 +1,5 @@
 import FormValidation from './technical/FormValidation';
+import PerformanceDemo from './technical/PerformanceDemo';
 
 const TechnicalShowcase = () => {
   return (
@@ -9,6 +10,14 @@ const TechnicalShowcase = () => {
           <h3 className="text-xl font-semibold mb-4">Form Validation</h3>
           <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <FormValidation />
+          </div>
+        </div>
+
+        {/* Performance Demo */}
+        <div className="space-y-4">
+          <h3 className="text-xl font-semibold mb-4">Performance Optimizations</h3>
+          <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            <PerformanceDemo />
           </div>
         </div>
       </div>
