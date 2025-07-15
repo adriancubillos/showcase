@@ -46,16 +46,8 @@ const Navigation = () => {
       className="fixed top-4 left-0 right-0 mx-auto z-50 bg-white dark:bg-gray-800 rounded-lg sm:rounded-full shadow-lg
         max-w-[95vw] sm:max-w-fit overflow-x-auto no-scrollbar sm:px-6 py-2 sm:left-1/2 sm:-translate-x-1/2"
     >
-      <ul className="flex justify-between sm:justify-start px-4 sm:px-0 gap-3 sm:gap-8 whitespace-nowrap min-w-fit">
-        <style jsx>{`
-          .no-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-          .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `}</style>
+      <ul className="flex justify-between sm:justify-start px-4 sm:px-0 gap-3 sm:gap-8 whitespace-nowrap min-w-fit [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+
         {navItems.map(({ id, label }) => (
           <li key={id}>
             <button
