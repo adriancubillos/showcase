@@ -12,7 +12,7 @@ const Navigation = () => {
       setIsVisible(window.scrollY > 100);
 
       // Update active section
-      const sections = ['hero', 'skills', 'interactions', 'projects', 'contact'];
+      const sections = ['hero', 'skills', 'technical', 'interactions', 'projects', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -32,6 +32,7 @@ const Navigation = () => {
   const navItems = [
     { id: 'hero', label: 'Home' },
     { id: 'skills', label: 'Skills' },
+    { id: 'technical', label: 'Technical' },
     { id: 'interactions', label: 'Interactions' },
     { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },

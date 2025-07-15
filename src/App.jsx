@@ -9,6 +9,7 @@ import ContactForm from './components/ContactForm'
 import DarkModeToggle from './components/DarkModeToggle'
 import Navigation from './components/Navigation'
 import InteractionsShowcase from './components/InteractionsShowcase'
+import TechnicalShowcase from './components/TechnicalShowcase'
 import scrollTo from './components/ScrollTo'
 import './App.css'
 
@@ -136,8 +137,18 @@ function App() {
         </div>
       </section>
 
+      {/* Technical Section */}
+      <section id="technical" className="mt-12 section-container bg-white dark:bg-gray-800">
+        <h2 className="text-4xl font-bold text-center mb-12">Technical Showcase</h2>
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+          Explore technical implementations and best practices in modern web development.
+          Each component demonstrates robust functionality and clean code architecture.
+        </p>
+        <TechnicalShowcase />
+      </section>
+
       {/* Interactions Section */}
-      <section id="interactions" className="section-container bg-white dark:bg-gray-800">
+      <section id="interactions" className="mt-12 section-container bg-white dark:bg-gray-800">
         <h2 className="text-4xl font-bold text-center mb-12">Interactive Elements</h2>
         <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
           Explore various interactive elements and animations that enhance the user experience.

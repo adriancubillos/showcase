@@ -10,6 +10,7 @@ import FloatingButton from './interactions/FloatingButton';
 import HoverCard from './interactions/HoverCard';
 import ParticleSystem from './interactions/ParticleSystem';
 import NotificationStack from './interactions/NotificationStack';
+import FormValidation from './technical/FormValidation';
 
 const InteractionsShowcase = () => {
   return (
