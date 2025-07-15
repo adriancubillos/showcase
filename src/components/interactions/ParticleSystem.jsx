@@ -72,41 +72,49 @@ const ParticleSystem = () => {
 
         // Add particle to state
         setParticles(prev => [...prev, particle]);
-        // Remove particle after 10 seconds
+        // Remove particle after 5 seconds
         setTimeout(() => {
             setParticles(prev => prev.filter(p => p.id !== particle.id));
         }, 5000);
     };
 
     // Animation loop using requestAnimationFrame
+    // useCallback creates a stable reference to this function across re-renders
+    // This is important for refs because React uses reference equality to detect changes
+    // Without useCallback, the ref callback would be recreated every render, potentially causing issues
     const containerRef = useCallback((node) => {
         if (node !== null) {
-            setContainerRef(node);
+            setContainerRef(node); // Store the DOM element in state when React attaches it
         }
-    }, []);
+    }, []); // Empty dependency array means this callback never changes
 
+    // Store the actual DOM element reference for the container
     const [containerElement, setContainerRef] = useState(null);
 
+    // Animation loop effect
     useEffect(() => {
+        // Don't start animation until we have a container reference
         if (!containerElement) return;
 
-        let animationFrameId;
-        let lastTime = performance.now();
+        let animationFrameId; // Store the animation frame ID for cleanup
+        let lastTime = performance.now(); // Track time for frame rate control
 
+        // Main animation loop function
         const animate = (currentTime) => {
             const deltaTime = currentTime - lastTime;
-            if (deltaTime >= 16) { // Cap at ~60fps for performance
-                // Get current container dimensions
+            // Limit updates to ~60fps (1000ms / 60 ≈ 16ms)
+            if (deltaTime >= 16) {
+                // Get the latest container size for boundary checking
                 const { width, height } = containerElement.getBoundingClientRect();
-                // Update all particles' positions
-                setParticles(prevParticles => 
-                    prevParticles.map(particle => 
+                // Update each particle's position while maintaining boundaries
+                setParticles(prevParticles =>
+                    prevParticles.map(particle =>
                         updateParticle(particle, width, height)
                     )
                 );
-                lastTime = currentTime;
+                lastTime = currentTime; // Update time for next frame
             }
-            // Schedule next frame
+            // Request the next frame
             animationFrameId = requestAnimationFrame(animate);
         };
 
@@ -123,7 +131,12 @@ const ParticleSystem = () => {
             'bg-secondary',
             'bg-purple-400',
             'bg-blue-400',
-            'bg-indigo-400'
+            'bg-indigo-400',
+            'bg-green-400',
+            'bg-red-400',
+            'bg-yellow-400',
+            'bg-orange-400',
+            'bg-pink-400',
         ];
         return colors[Math.floor(Math.random() * colors.length)];
     };
@@ -146,17 +159,17 @@ const ParticleSystem = () => {
                     <motion.div
                         key={ripple.id}
                         // Ripple styling with semi-transparent border
-                        className="absolute rounded-full border border-primary/30"
+                        className="absolute rounded-full border border-secondary/70 bg bg-primary/10"
                         // Initial state: invisible at click position
-                        initial={{ 
-                            width: 0, 
+                        initial={{
+                            width: 0,
                             height: 0,
                             x: ripple.x,
                             y: ripple.y,
                             opacity: 0.8,
                         }}
                         // Animate to full size while fading out
-                        animate={{ 
+                        animate={{
                             width: 100, // Final diameter
                             height: 100,
                             x: ripple.x - 50, // Center the ripple
