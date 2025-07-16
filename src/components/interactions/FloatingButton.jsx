@@ -93,7 +93,8 @@ const FloatingButton = () => {
                 return (
                     <motion.button
                         key={config.hoverKey}
-                        className={`relative px-6 py-3 rounded-lg ${config.color} text-white w-full`}
+                        className={`relative rounded-lg ${config.color} text-white w-full h-[70px] sm:h-[90px]
+                            flex flex-col items-center justify-center overflow-visible`}
                         animate={{
                             ...config.motion,
                             scale: hoveredStates[config.hoverKey] ? 1.05 : 1,
@@ -105,13 +106,13 @@ const FloatingButton = () => {
                         onHoverEnd={() => setHoveredStates(prev => ({ ...prev, [config.hoverKey]: false }))}
                         transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                     >
-                        {config.text}
+                        <span className="text-[10px] sm:text-sm whitespace-nowrap">{config.text}</span>
                         {hoveredStates[config.hoverKey] && (
                             <motion.div
-                                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2"
-                                initial={{ opacity: 0, scale: 0.5 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.5 }}
+                                className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-lg sm:text-xl"
+                                initial={{ opacity: 0, y: -5 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 5 }}
                             >
                                 {config.arrow}
                             </motion.div>
