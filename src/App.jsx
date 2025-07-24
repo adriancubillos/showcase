@@ -112,12 +112,18 @@ function App() {
             </p>
             <button
               className="btn btn-primary"
+              onClick={() => scrollTo('technical')}
+            >
+              Technical Showcase
+            </button>
+            <button
+              className="btn btn-secondary"
               onClick={() => scrollTo('interactions')}
             >
               Interactive Elements
             </button>
             <button
-              className="btn btn-secondary"
+              className="btn btn-primary"
               onClick={() => scrollTo('projects')}
             >
               View My Work
