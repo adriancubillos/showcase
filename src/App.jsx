@@ -39,18 +39,18 @@ const skills = [
 
 const projects = [
   {
-    title: 'E-commerce Platform',
-    description: 'A modern e-commerce platform built with React and Node.js',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80',
-    tags: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-    link: '#'
+    title: 'Movie Catalog',
+    description: 'This Movie Catalog App lets users browse trending movies, search titles, and explore content using the TMDB API. It features a responsive layout and a sleek, modern design.',
+    image: '/movieCatalog.png',
+    tags: ['React', 'Vite', 'Appwrite', 'Tailwind CSS'],
+    link: 'https://movie-catalog-nine-eta.vercel.app/'
   },
   {
     title: 'Portfolio Website',
     description: 'A personal portfolio website showcasing projects and skills',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80',
-    tags: ['React', 'Tailwind CSS', 'Framer Motion'],
-    link: '#'
+    image: '/portfolio.png', // Add a screenshot of your portfolio to public/portfolio.png
+    tags: ['Next.js', 'React', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
+    link: 'https://portfolio-snowy-seven-70.vercel.app/'
   }
 ]
 

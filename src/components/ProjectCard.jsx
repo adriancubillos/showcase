@@ -15,11 +15,13 @@ const ProjectCard = ({ title, description, image, tags, link }) => {
       transition={{ duration: 0.6 }}
       className="card overflow-hidden"
     >
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-48 object-cover rounded-t-xl"
-      />
+      <div className="relative h-64 overflow-hidden rounded-t-xl">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-contain bg-gray-50 dark:bg-gray-800"
+        />
+      </div>
       <div className="p-6">
         <h3 className="text-2xl font-semibold mb-2">{title}</h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>

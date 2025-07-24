@@ -1,82 +1,85 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  GlobeAltIcon,
+  CodeBracketIcon,
+  UserCircleIcon,
+} from '@heroicons/react/24/outline';
 
-const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formData);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+const ContactInfo = () => {
+  const contactDetails = {
+    email: 'adrian@example.com',
+    phone: '+1 (626) 888-2374',
+    socials: [
+      {
+        name: 'GitHub',
+        url: 'https://github.com/adriancubillos',
+        icon: CodeBracketIcon
+      },
+      {
+        name: 'LinkedIn',
+        url: 'https://linkedin.com/in/adrian-cubillos',
+        icon: UserCircleIcon
+      },
+      {
+        name: 'Portfolio',
+        url: 'https://portfolio-snowy-seven-70.vercel.app',
+        icon: GlobeAltIcon
+      }
+    ]
   };
 
   return (
-    <motion.form
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="space-y-6"
-      onSubmit={handleSubmit}
+      className="space-y-8"
     >
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary"
-          required
-        />
+      {/* Contact Methods */}
+      <div className="space-y-4">
+        <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+          <EnvelopeIcon className="w-6 h-6" />
+          <a href={`mailto:${contactDetails.email}`} className="hover:text-primary transition-colors">
+            {contactDetails.email}
+          </a>
+        </div>
+        <div className="flex items-center space-x-3 text-gray-600 dark:text-gray-300">
+          <PhoneIcon className="w-6 h-6" />
+          <a href={`tel:${contactDetails.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-primary transition-colors">
+            {contactDetails.phone}
+          </a>
+        </div>
       </div>
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-2">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary"
-          required
-        />
+
+      {/* Social Links */}
+      <div className="flex justify-center space-x-8">
+        {contactDetails.socials.map((social) => {
+          const Icon = social.icon;
+          return (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center group"
+              aria-label={social.name}
+            >
+              <Icon className="w-8 h-8 text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors" />
+              <span className="mt-2 text-sm text-gray-600 dark:text-gray-400 group-hover:text-primary transition-colors">
+                {social.name}
+              </span>
+            </a>
+          );
+        })}
       </div>
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          rows="4"
-          className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 focus:ring-2 focus:ring-primary"
-          required
-        ></textarea>
-      </div>
-      <button type="submit" className="btn btn-primary w-full">
-        Send Message
-      </button>
-    </motion.form>
+
+      <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
+        Feel free to reach out through any of these channels!
+      </p>
+    </motion.div>
   );
 };
 
-export default ContactForm;
+export default ContactInfo;
