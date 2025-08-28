@@ -39,11 +39,11 @@ const skills = [
 
 const projects = [
   {
-    title: 'Movie Catalog',
-    description: 'This Movie Catalog App lets users browse trending movies, search titles, and explore content using the TMDB API. It features a responsive layout and a sleek, modern design.',
-    image: '/movieCatalog.png',
-    tags: ['React', 'Vite', 'Appwrite', 'Tailwind CSS'],
-    link: 'https://movie-catalog-nine-eta.vercel.app/'
+    title: 'Prep Wizard',
+    description: 'Prep Wizard is a website project designed to practice integrating AI models with your apps. The platform offers a sleek and modern experience for job interview preparation.',
+    image: '/prepWizard.png',
+    tags: ['Next.js', 'Firebase', 'Tailwind CSS', 'Vapi AI', 'shadcn/ui', 'Google Gemini', 'zod'],
+    link: 'https://interviewer-ai-beta.vercel.app/'
   },
   {
     title: 'Portfolio Website',
@@ -51,7 +51,17 @@ const projects = [
     image: '/portfolio.png', // Add a screenshot of your portfolio to public/portfolio.png
     tags: ['Next.js', 'React', 'Three.js', 'Tailwind CSS', 'Framer Motion'],
     link: 'https://portfolio-snowy-seven-70.vercel.app/'
-  }
+  },
+  {
+    title: 'Movie Catalog',
+    description: 'This Movie Catalog App lets users browse trending movies, search titles, and explore content using the TMDB API. It features a responsive layout and a sleek, modern design.',
+    image: '/movieCatalog.png',
+    tags: ['React', 'Vite', 'Appwrite', 'Tailwind CSS'],
+    link: 'https://movie-catalog-nine-eta.vercel.app/'
+  },
+
+
+
 ]
 
 function App() {
